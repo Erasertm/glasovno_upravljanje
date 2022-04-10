@@ -1,0 +1,55 @@
+<!-- Code for tutorial: https://www.youtube.com/watch?v=4eIRrowvLRk -->
+<!-- DevHoot Publication -->
+<!-- Website:  https://devhoot.ooo -->
+<!-- Note: This code was produced by Imran Khan @DevHoot -->
+<!-- If you find this useful consider subscribing to our YouTube channel and website -->
+<!-- patreon Support:  https://www.patreon.com/devhoot -->
+<!-- -->
+<!-- Copied from web -->
+<!-- https://gist.github.com/strongSoda/27f4caf1335e3d03accf708e1fcdcbf0 -->
+<!-- -->
+<!-- Copied from web -->
+<!-- https://blog.xuite.net/iamleon/blog/589571663 -->
+<!-- -->
+<!-- -->
+<!-- Pošaljite podatke na ESP32: -->
+<!-- location.href = "http://192.168.1.184/stt?text="+ event.results[0][0].transkript -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+</head>
+
+<body>
+
+    <!-- Input area -->
+    <center><label for="Speech Recognition">Speech Recognition</label>
+    <input type="text" name="" id="speechToText" placeholder="Speak Something" onclick="record()"></center>
+
+    <!-- Below is the script for voice recognition and conversion to text-->
+    <script>
+        function record() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang =  "zh-TW"; //"en-US"; //"en-GB"; //
+
+            recognition.onresult = function(event) {
+                //console.log(event);
+                document.getElementById('speechToText').value = event.results[0][0].transcript;
+                
+                location.href = "http://192.168.1.184/stt?text="+ event.results[0][0].transcript 
+            }
+            recognition.start();
+
+        }
+    </script>
+    
+    <script> record(); </script>
+	<!-- end of script  -->
+
+</body>
+</html>
